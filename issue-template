@@ -1,0 +1,37 @@
+name: New Refurbishment Log
+description: Log a completed ThinkPad refurbishment
+title: "[Refurb]: <Model Number> - <Serial/ID>"
+labels: ["refurbishment"]
+body:
+  - type: dropdown
+    id: model
+    attributes:
+      label: ThinkPad Model
+      description: Which machine did you just finish?
+      options:
+        - T420
+        - T480s
+        - X260
+        - X270
+        - W541
+        - Other
+    validations:
+      required: true
+      
+  - type: checkboxes
+    id: standard_upgrades
+    attributes:
+      label: Standard Procedures Performed
+      options:
+        - label: Installed 120GB SSD
+        - label: Upgraded RAM
+        - label: Cleaned internals and repasted CPU
+        - label: Flashed Open-Source Firmware (Libreboot/Coreboot)
+        
+  - type: textarea
+    id: notes
+    attributes:
+      label: Additional Notes & Quirks
+      description: Any specific repairs done? Missing screws replaced? Cosmetic damage?
+    validations:
+      required: false
