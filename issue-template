@@ -1,4 +1,4 @@
-name: New Refurbishment Log
+name: New Refurb Log
 description: Log a completed ThinkPad refurbishment
 title: "[Refurb]: <Model Number> - <Serial/ID>"
 labels: ["refurbishment"]
