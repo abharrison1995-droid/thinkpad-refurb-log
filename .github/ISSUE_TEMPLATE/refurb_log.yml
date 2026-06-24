@@ -7,31 +7,87 @@ body:
     id: model
     attributes:
       label: ThinkPad Model
-      description: Which machine did you just finish?
+      description: Select the specific ThinkPad model.
       options:
+        - T40
+        - T41
+        - T42
+        - T43
+        - T60
+        - T61
+        - T400
+        - T410
         - T420
+        - T430
+        - T500
+        - T510
+        - T520
+        - T530
         - T480s
+        - X200
+        - X201
+        - X220
+        - X230
         - X260
         - X270
         - W541
         - Other
     validations:
       required: true
+
+  - type: dropdown
+    id: ram_upgrade
+    attributes:
+      label: RAM Configuration
+      description: Total RAM installed in the machine.
+      options:
+        - No Change
+        - 2GB
+        - 4GB
+        - 8GB
+        - 16GB
+    validations:
+      required: true
+
+  - type: dropdown
+    id: storage_upgrade
+    attributes:
+      label: Storage Configuration
+      description: Select the SSD installed during refurbishment.
+      options:
+        - No Change
+        - 120GB SSD
+        - 128GB SSD
+        - 256GB SSD
+        - Other
+    validations:
+      required: true
       
   - type: checkboxes
-    id: standard_upgrades
+    id: firmware_procedures
     attributes:
-      label: Standard Procedures Performed
+      label: Maintenance & Firmware Procedures
       options:
-        - label: Installed 120GB SSD
-        - label: Upgraded RAM
         - label: Cleaned internals and repasted CPU
         - label: Flashed Open-Source Firmware (Libreboot/Coreboot)
+        - label: Executed 1vyrain software flash
+
+  - type: checkboxes
+    id: hardware_replacements
+    attributes:
+      label: Hardware Components Replaced
+      description: Select any parts that were swapped out for new/working replacements.
+      options:
+        - label: Fan / Heatsink
+        - label: Battery
+        - label: Keyboard
+        - label: Screen
+        - label: HDD Cover
         
   - type: textarea
     id: notes
     attributes:
       label: Additional Notes & Quirks
-      description: Any specific repairs done? Missing screws replaced? Cosmetic damage?
+      description: Any specific repairs done, testing results, or cosmetic flaws to note?
     validations:
       required: false
