@@ -1,0 +1,32 @@
+name: Log Refurbishment
+
+# This tells the action to trigger whenever an issue is opened
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  append-to-log:
+    # Only run this if the issue has the "refurbishment" label we set in the form
+    if: contains(github.event.issue.labels.*.name, 'refurbishment')
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create or Append to Master Log
+        run: |
+          # Creates the file if it doesn't exist, appends if it does
+          echo "### ${{ github.event.issue.title }}" >> master_refurb_log.md
+          echo "**Date Logged:** ${{ github.event.issue.created_at }}" >> master_refurb_log.md
+          echo "**Details:** [Click here to view full form data](${{ github.event.issue.html_url }})" >> master_refurb_log.md
+          echo "---" >> master_refurb_log.md
+
+      - name: Commit and Push Changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add master_refurb_log.md
+          git commit -m "Automated log update for ${{ github.event.issue.title }}"
+          git push
